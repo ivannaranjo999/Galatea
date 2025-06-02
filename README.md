@@ -15,12 +15,38 @@ ideal for developers.
 - Implemented in C with minimal dependencies, requiring only `ncurses` for the text-based user interface.
 
 ## Usage
+### TUI
 To open the Galatea Text User Interface, simply run:
 
 ```
 galatea
 ```
 ![galateaTUI](pics/TUI.png)
+
+### CLI
+These are the multiple verbs available for Galatea Command Line Interface.
+```
+# List all tasks
+galatea list 
+
+# Add a new task
+galatea add "task" 
+
+# Mark / unmark task
+galatea mark <number>
+
+# Delete task
+galatea delete <number>
+
+# Edit task
+galatea edit <number> "new text"
+
+# Add or modify task's deadline
+galatea deadline <number> YYYY-MM-DD
+
+# Add or modify task's priority 
+galatea priority <number> <1|2|3>
+```
 
 ## Where are tasks stored?
 Tasks are stored in plain text in `~/.config/galatea/`.
@@ -29,6 +55,7 @@ Tasks are stored in plain text in `~/.config/galatea/`.
 ### Dependencies
 - ncurses
 
+### Compilation and isntallation
 To build Galatea, run:
 ```
 make
