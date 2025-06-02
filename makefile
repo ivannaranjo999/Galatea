@@ -1,12 +1,13 @@
 # Compile todo tool
 CC = gcc
 CFLAGS = -Wall -Wextra -pedantic -std=c99
-TARGET = todo
+LIB = -lncurses
+TARGET = galatea
 
 all: $(TARGET)
 
-$(TARGET): todo.c
-	$(CC) $(CFLAGS) -o $(TARGET) $(TARGET).c
+$(TARGET): galatea.c
+	$(CC) $(CFLAGS) -o $(TARGET) $(TARGET).c $(LIB)
 
 clean:
 	rm -f $(TARGET)
