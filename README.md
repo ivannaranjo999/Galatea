@@ -1,4 +1,4 @@
-# 📔Galatea - Open Source Task Manager
+# 📔 Galatea - Open Source Task Manager
 ## What is Galatea?
 Galatea is a lightweight and efficient command-line task manager application
 designed for users who prefer managing tasks directly from the terminal. It
