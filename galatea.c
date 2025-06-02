@@ -174,6 +174,9 @@ void tui(Todo todos[], int *todo_count) {
   int selected = 0;
   while (1) {
     clear();
+    char title[MAX_LINE + 64];
+    snprintf(title, sizeof(title), "Galatea Task Manager\n");
+    mvprintw(0, 0, "%s", title);
     for (int i = 0; i < *todo_count; i++) {
       if (i == selected) attron(A_REVERSE);
       char display_line[MAX_LINE + 64];
@@ -194,11 +197,11 @@ void tui(Todo todos[], int *todo_count) {
           strcat(display_line, todos[i].deadline);
         }
       strcat(display_line, ")");
-}
-      mvprintw(i, 0, "%s", display_line);
+      }
+      mvprintw(i + 2, 0, "%s", display_line);
       if (i == selected) attroff(A_REVERSE);
     }
-    mvprintw(*todo_count + 2, 0, "j/k = navigate | a = add | x = toggle | p = priority | f = deadline | d = delete | q = quit");
+    mvprintw(1 + *todo_count + 2, 0, "j/k = navigate | a = add | x = toggle | p = priority | f = deadline | d = delete | q = quit");
     refresh();
 
     int ch = getch();

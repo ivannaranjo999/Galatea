@@ -21,6 +21,15 @@ make uninstall
 
 Ensure that `~/.local/bin` is present in your `PATH` environment variable.
 
+## Usage
+
+To open the Galatea Text User Interface, simply run:
+
+```
+galatea
+```
+![galateaTUI](pics/TUI.png)
+
 ## How are tasks stored?
 
 Tasks are stored in plain text in `~/.config/galatea/`.
