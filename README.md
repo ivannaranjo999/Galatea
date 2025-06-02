@@ -19,4 +19,8 @@ To uninstall Galatea from `~/.local/bin`, run:
 make uninstall
 ```
 
-Ensure that `~/.local/bin` is present in your `PATH` environment variable
+Ensure that `~/.local/bin` is present in your `PATH` environment variable.
+
+## How are tasks stored?
+
+Tasks are stored in plain text in `~/.config/galatea/`.

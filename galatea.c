@@ -1,11 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <string.h>
 #include <ncurses.h>
+#include <sys/stat.h>
+#include <pwd.h>
 
-#define TODO_FILE "tasks.txt"
 #define MAX_TODOS 100
 #define MAX_LINE 1024
+#define PATH_MAX 4096
 
 typedef struct{
   int done;
@@ -14,8 +17,24 @@ typedef struct{
   char text[MAX_LINE];
 } Todo;
 
+char *get_tasks_file_path() {
+  static char path[PATH_MAX];
+  const char *home = getenv("HOME");
+
+  if (!home) {
+    home = getpwuid(getuid())->pw_dir;
+  }
+
+  snprintf(path, sizeof(path), "%s/.config/galatea", home);
+  mkdir(path, 0755);
+
+  strncat(path, "/galatea-tasks.txt", sizeof(path) - strlen(path) - 1);
+  return path;
+}
+
+
 int load_todos(Todo todos[]) {
-  FILE *file = fopen(TODO_FILE, "r");
+  FILE *file = fopen(get_tasks_file_path(), "r");
   if (!file) return 0;
 
   int todo_count = 0;
@@ -42,7 +61,7 @@ int load_todos(Todo todos[]) {
 }
 
 void save_todos(Todo todos[], int todo_count) {
-  FILE *file = fopen(TODO_FILE, "w");
+  FILE *file = fopen(get_tasks_file_path(), "w");
   if (!file){
     perror("Error writing in file");
     return;
